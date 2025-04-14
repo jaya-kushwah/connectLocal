@@ -1,0 +1,75 @@
+.sidebar {
+    width: 290px;
+    height:auto;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    margin-top:76px;
+    position:fixed;
+    margin-left:-2%;
+  }
+  
+  .sidebar.dark {
+    background:white
+    color: #eee;
+    height:102%;
+  }
+  
+  .sidebar.collapsed {
+    width: 50px;
+  }
+  
+  .toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1px;
+    font-size: 18px;
+    color:white;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    color: black;
+    gap: 7%;
+    text-decoration:none;
+    /* margin-left:-19% */
+  }
+  
+  .menu-item:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-item.active {
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .footer {
+    margin-top: 10px;
+    padding: 0px;
+    border-top: 1px solid rgba(35, 31, 31, 0.1);
+  }
+  
+  .toggle-button {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .toggle-button:hover {
+    background: rgba(95, 24, 218, 0.1);
+  }
+  
+

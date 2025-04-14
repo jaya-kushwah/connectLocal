@@ -1,0 +1,122 @@
+.event-image {
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  .fav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .host-image {
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* .date-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  } */
+
+  /* Container styles */
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Image Styling */
+.event-image {
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Favorite button */
+.fav-btn {
+  background-color: #ffffffcc;
+  border: none;
+  font-size: 20px;
+  color: #f39c12;
+  transition: all 0.3s ease-in-out;
+}
+
+.fav-btn:hover {
+  transform: scale(1.1);
+  background-color: #fff;
+}
+
+/* Event Name */
+.display-5 {
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+/* Date & Slot Info */
+.date-info {
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.date-info p {
+  margin: 0;
+  color: #7f8c8d;
+}
+
+/* Ticket Info Section */
+.h4.fw-semibold {
+  color: #34495e;
+}
+
+.h6.text-muted {
+  font-size: 1rem;
+  color: #95a5a6 !important;
+}
+
+/* Host Section */
+.host-image {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border: 2px solid #3498db;
+}
+
+/* Buttons */
+.btn-success,
+.btn-primary {
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+}
+
+.btn-success:hover {
+  background-color: #27ae60;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+/* Event Description */
+.text-muted {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #7f8c8d !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .event-image {
+    max-height: 300px;
+  }
+
+  .host-image {
+    width: 48px;
+    height: 48px;
+  }
+
+  .btn {
+    font-size: 0.85rem;
+  }
+}

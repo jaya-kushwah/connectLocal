@@ -1,0 +1,92 @@
+/* Adjust Sidebar Width */
+.sidebar {
+  width: 252px; 
+  min-height: 180vh;
+  background:rgb(255, 255, 255);
+  /* padding: 20px; */
+  transition: width 0.3s ease-in-out;
+  /* margin-left:-25px; */
+}
+
+/* Adjust Carousel Width for Sidebar */
+.carousel-container {
+  position: relative;
+  width: calc(100% - 280px);
+  max-width: 1300px;
+  margin-left: auto;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: width 0.3s ease-in-out, margin-left 0.3s;
+}
+
+/* Ensure the images fit properly */
+.carousel-container img {
+  object-fit: cover;
+  width: 100%;
+  transition: transform 0.5s ease;
+}
+
+/* Adjust Carousel Navigation Buttons */
+.carousel-container button {
+  opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+  width: 50px;
+  height: 50px;
+}
+
+.carousel-container:hover button {
+  opacity: 1;
+}
+
+.carousel-container button:hover {
+  background-color: white !important;
+  transform: scale(1.1);
+}
+
+/* Responsive Tweaks */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 240px;
+  }
+  .carousel-container {
+    width: calc(100% - 240px);
+  }
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px;
+  }
+  .carousel-container {
+    width: calc(100% - 200px);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 180px;
+  }
+  .carousel-container {
+    width: calc(100% - 180px);
+    height: 280px !important;
+  }
+  .carousel-container button {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    width: 100px;
+  }
+  .carousel-container {
+    width: 100%;
+    height: 220px !important;
+  }
+  .carousel-container button {
+    width: 35px !important;
+    height: 35px !important;
+  }
+}
