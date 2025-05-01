@@ -45,7 +45,7 @@ const AdmainDashboard = () => {
   ];
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div  className=" min-h-screen">
 
       {/* Main Content Area */}
       <div className="flex-1 p-6">

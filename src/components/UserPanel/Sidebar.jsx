@@ -7,7 +7,7 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
-    <div className={`sidebar ${darkMode ? "dark" : ""} ${isCollapsed ? "collapsed" : ""}`}>
+    <div  className={`sidebar ${darkMode ? "dark" : ""} ${isCollapsed ? "collapsed" : ""}`}>
 
       <nav className="menu">
         <ul>
@@ -51,11 +51,11 @@ const Sidebar = () => {
               <FaEnvelope className="menu-icon" /> News & Announcements
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/messaging-notification" className="menu-item">
               <FaBell className="menu-icon" /> Messaging & Notification
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>

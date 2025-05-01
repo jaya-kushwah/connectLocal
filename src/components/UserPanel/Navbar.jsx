@@ -2,7 +2,7 @@ import React from "react";
 import "../../assets/Style/Navbar.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import image from "../../assets/logon.jpg.png";
-import userIcon from "../../assets/mayu.png.jpg";
+import userIcon from "../../assets/imeg.png";
 import { Link } from "react-router-dom";
 import { Cookies } from 'react-cookie';
 
@@ -64,10 +64,10 @@ const Navbar = () => {
               </li>
             ))}
 
-            <div style={{ marginTop: "7%" }} className="relative">
+            {/* <div style={{ marginTop: "7%" }} className="relative">
               <span className="absolute right-0 top-0 w-2 h-2 bg-red-500 rounded-full"></span>
               <span  >🔔</span>
-            </div>
+            </div> */}
 
             <li className="nav-item d-flex align-items-center ms-3">
               <Link

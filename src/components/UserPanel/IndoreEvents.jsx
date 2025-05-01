@@ -57,8 +57,8 @@ const MumbaiEvents = () => {
               onClick={() => handleImageClick(event._id)}
             >
               <img
-                src={`http://localhost:8080/event/upload/${event.eventPic}`}
-                alt={event.eventName}
+                src={`http://localhost:8080/event/upload/${event.eventImage}`}
+                alt={event.eventTitle}
                 className="event-image"
               />
 
@@ -67,7 +67,7 @@ const MumbaiEvents = () => {
               </button> */}
             </div>
 
-            <div style={{ color: "#b9536a", marginTop: "3%", backgroundColor: "#dfd8d8" }} className="h6 fw-bold"> {event.eventName}</div>
+            <div style={{ color: "#b9536a", marginTop: "3%", backgroundColor: "#dfd8d8" }} className="h6 fw-bold"> {event.eventTitle}</div>
 
 
             <div className="p-3 text-start fw-normal">
@@ -89,7 +89,7 @@ const MumbaiEvents = () => {
               </div>
 
               <div className="fw-bold">
-                <span>Price: ₹</span>{event.slotPrice}/-
+                <span>Price: ₹</span>{event.ticketPrice}/-
               </div>
             </div>
           </div>

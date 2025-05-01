@@ -32,13 +32,13 @@ const EventDes = () => {
   }
 
   return (
-    <Container>
-      <div style={{ marginLeft: "35%" }} className="container min-vh-100 bg-light py-5">
+    // <Container>
+      <div style={{ width:"170vh" }} className="container min-vh-100 bg-light py-5">
         <div className="container bg-white rounded shadow-lg p-4">
           {/* Carousel Section */}
           <div className="position-relative">
             <img
-              src={`http://localhost:8080/event/upload/${event.eventPic}`}
+              src={`http://localhost:8080/event/upload/${event.eventImage}`}
               alt="Event Poster"
               className="img-fluid rounded w-100 event-image"
             />
@@ -71,7 +71,7 @@ const EventDes = () => {
               <div>
                 <h2 className="h4 fw-semibold">Ticket Information</h2>
                 <h3 className="h6 text-muted">
-                  Standard Ticket: ₹{event.slotPrice} Each
+                  Standard Ticket: ₹{event.ticketPrice} Each
                 </h3>
               </div>
               {/* <button className="btn btn-primary px-4 py-2">
@@ -119,7 +119,7 @@ const EventDes = () => {
           </div>
         </div>
       </div>
-    </Container>
+    // {/* </Container> */}
   );
 };
 

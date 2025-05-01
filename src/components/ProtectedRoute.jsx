@@ -4,9 +4,9 @@ import { Cookies } from 'react-cookie';
 
 const ProtectedRoute = ({ children }) => {
     const cookies = new Cookies();
-    const token = cookies.get('user'); // or cookies.get('token') if stored separately
+    const user = cookies.get('user'); // or cookies.get('token') if stored separately
 
-    if (!token) {
+    if (!user.token) {
         return <Navigate to="/login" replace />;
     }
 

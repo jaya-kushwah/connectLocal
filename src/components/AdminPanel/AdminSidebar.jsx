@@ -8,9 +8,9 @@ const AdminSidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     return (
-        <div className={`sidebar ${darkMode ? "dark" : ""} ${isCollapsed ? "collapsed" : ""}`}>
+        <div style={{marginLeft:"1px"}} className={`sidebar ${darkMode ? "dark" : ""} ${isCollapsed ? "collapsed" : ""}`}>
 
-            <nav className="menu">
+            <div className="menu">
                 <ul>
                     <li>
                         <Link to="/AdminDashboard" className="menu-item">
@@ -28,27 +28,27 @@ const AdminSidebar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/group-management" className="menu-item">
-                            <FaCalendarAlt className="menu-icon" />Interest Group Management
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/" className="menu-item">
+                        <Link to="/event-form" className="menu-item">
                             <FaBell className="menu-icon" />  Event Management
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
+                        <Link to="/group-management" className="menu-item">
+                            <FaCalendarAlt className="menu-icon" />Interest Group Management
+                        </Link>
+                    </li> */}
+                    {/* <li>
                         <Link to="/News & Announcement" className="menu-item">
                             <FaEnvelope className="menu-icon" />News & Announcement
                         </Link>
                     </li>
                     <li>
                         <Link to="/Reporting" className="menu-item">
-                            {/* <ReportSearch className="menu-icon" /> Analytics & Reporting */}
+                            // <ReportSearch className="menu-icon" /> Analytics & Reporting
                         </Link>
-                    </li>
+                    </li> */}
                 </ul>
-            </nav>
+            </div>
         </div>
     );
 };

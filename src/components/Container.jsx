@@ -5,16 +5,17 @@ import Navbar from './UserPanel/Navbar'
 
 function Container({ children }) {
     return (
-        <div className='d-flex'>
+        <div className='d-flex w-100 position-relative'>
             <Sidebar />
-            <div className='mainLayout-content'>
+            <div >
                 <Navbar />
-                <div >
+                <div className='mainLayout-content position-absolute top-1' >
                     {children}
                 </div>
             </div>
         </div>
     )
 }
+  
 
 export default Container

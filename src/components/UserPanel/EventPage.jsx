@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // make sure this is imported
 import Container from "../Container";
@@ -5,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const EventsPage = () => {
   const [events, setEvents] = useState([]);
-    // const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -19,28 +20,26 @@ const EventsPage = () => {
     fetchEvents();
   }, []);
 
-  // const handleImageClick = (eventId) => {
-  //   console.log(eventId)
-  //   navigate(`/interest/${eventId}`); // navigate to event detail page
-  // };
 
   return (
-    <Container>
-      <div className="container-fluid p-0">
-        <div style={{ marginLeft: "24%" }} className="container mt-4">
-          <h1 style={{ marginTop: "-2%", marginLeft: "0%" }} className="events-heading">Upcoming Events</h1>
-          <div style={{ gap: "4%" }} className="row g-4">
-            {events.map((event) => (
-              <div className="col-sm-6 col-md-4 col-lg-3" 
-              // onClick={() => handleImageClick(event._id)}
-              key={event._id}>
-                <EventCard event={event} />
-              </div>
-            ))}
-          </div>
+    <div className="container-fluid p-0">
+      <div className="container mt-4">
+        <h1 style={{ marginTop: "0%", marginLeft: "0%" }} className="events-heading">
+          Upcoming Events
+        </h1>
+        <div className="row">
+          {events.map((event) => (
+            <div 
+              className="col-12 col-sm-6 col-md-4" 
+              key={event._id}
+              style={{ padding: "15px" ,marginTop:"-3%"}}
+            >
+              <EventCard event={event} />
+            </div>
+          ))}
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
@@ -51,7 +50,7 @@ const EventCard = ({ event }) => {
   return (
     <div
       className="card border-0 text-white overflow-hidden position-relative"
-      style={{ height: "285px", width: "285px", cursor: "pointer" }}
+      style={{ height: "290px", width: "290px", cursor: "pointer"}}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >

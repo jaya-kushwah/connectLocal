@@ -33,23 +33,24 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <div className="container py-4">
-      <div className="row">
-        <div className="col-md-12 offset-md-1">
+    
+    <div className="container">
+      {/* <div className="row"> */}
+        <div className="col-md-12 ">
           {/* Main carousel container with improved styling */}
           <div
-            className="position-relative mx-auto carousel-container"
+            className="position-relative carousel-container"
             style={{
-              width: "69rem",
-              height: "400px",
+              // width: "80rem",
+              height: "390px",
               overflow: "hidden",
               boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15)",
-              marginTop: "-1.2rem",
+              marginTop: "76px",
             }}
           >
             {/* Images container with smooth transitions */}
             <div
-              className="d-flex h-100"
+              className="d-flex "
               style={{
                 transform: `translateX(-${currentIndex * 100}%)`,
                 transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
@@ -60,12 +61,12 @@ const HeroCarousel = () => {
                   <img
                     src={image}
                     alt={`Slide ${index + 1}`}
-                    className="w-100 h-100"
+                    className="w-100 "
                     style={{ objectFit: "cover" }}
                   />
                   {/* Optional overlay for better text contrast */}
                   <div
-                    className="position-absolute top-0 start-0 w-100 h-100"
+                    className="position-absolute top-0 start-0 w-100 "
                     style={{
                       background: "linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%)",
                       pointerEvents: "none"
@@ -153,7 +154,7 @@ const HeroCarousel = () => {
             </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };

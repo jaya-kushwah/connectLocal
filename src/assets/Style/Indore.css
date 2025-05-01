@@ -1,14 +1,16 @@
 /* Container & Heading */
 .events-container {
-  max-width: 1000px;
-  margin: 0 auto 0 20%;
+  max-width: 100%;
+  /* margin: 0 auto 0 20%; */
   padding: 20px;
   font-family: 'Poppins', sans-serif;
+  /* margin-left:20% */
 }
 .events-heading {
   font-size: 28px;
   font-weight: 700;
   color: #333;
+  /* margin-left:15%; */
   margin-bottom: 18px;
   animation: fadeInUp 0.6s ease-out;
 }
@@ -20,11 +22,12 @@
   gap: 10px;
   justify-content: center;
   margin: 0 0 24px -51%;
+  /* margin-left:-32% */
 }
 .filter-button {
   padding: 8px 18px;
   border-radius: 25px;
-  font-size: 14px;
+  font-size: 14px;  
   cursor: pointer;
   border: 2px solid transparent;
   background: linear-gradient(135deg, #f8f8f8, #ffffff);
@@ -41,9 +44,10 @@
 /* Grid */
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
   animation: fadeIn 0.5s ease-in;
+  /* margin-left:-32% */
 }
 
 /* Card */
@@ -51,11 +55,13 @@
   position: relative;
   border-radius: 12px;
   background: #fff;
+  width:100%;
   border: 1px solid #eaeaea;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
   cursor: pointer;
   overflow: hidden;
+  /* margin-left:116% */
 }
 .event-card:hover {
   transform: translateY(-6px) scale(1.03);
@@ -67,7 +73,7 @@
   position: absolute;
   inset: 0;
   border-radius: 12px;
-  padding: 2px;
+  padding: 1px;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   transition: opacity 0.4s ease;

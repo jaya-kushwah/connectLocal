@@ -11,16 +11,14 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const cookies = new Cookies();
-    const [token, setToken] = useState('');
     const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log('Email:', email);
-        console.log('Password:', password);
-    });
+    // useEffect(() => {
+    //     console.log('Email:', email);
+    //     console.log('Password:', password);
+    // },[]);
 
-    const data = async (e) => {
-        e.preventDefault();
+    const data = async () => {
 
         if (!email) return toast.error("Please enter email");
         if (!password) return toast.error("Please enter a password");
@@ -36,24 +34,19 @@ const Login = () => {
             });
 
             if (response.status === 200) {
-                const result = await response.json(); // Get the full response from backend
-
+                let result = await response.json(); // Get the full response from backend
+                console.log(result, 'result')
                 // Assuming result.data contains user data including the auth (role)
-                cookies.set('user', JSON.stringify(result.data), { path: '/' });
-                cookies.set('email', email, { path: '/' });
-                cookies.set('auth', result.data.auth, { path: '/' }); // Save the auth (user or admin)
-                cookies.set('_id', result.data._id, { path: '/' });
+                cookies.set('user', JSON.stringify(result.data));
+                // cookies.set('token', result.data.token, { path: '/' });
 
-
-                setToken(result.data.token); // Assuming token is inside result.data
-                toast.success(result.message); // Display the success message from backend
+                toast.success(result.message); 
 
                 setTimeout(() => {
-                    // Redirect based on the role (admin or user)
                     navigate(result.data.auth === "admin" ? "/AdminDashboard" : "/dashboard");
                 }, 1500);
             } else {
-                toast.error(result.message || "Login failed");
+                toast.error( "Login failed");
             }
         } catch (error) {
             console.error("Login Error:", error);
@@ -92,10 +85,10 @@ const Login = () => {
                             style={{ width: '100%', padding: 14, borderRadius: 16, border: '1px solid #F0EDFF', background: 'rgba(239, 237, 255, 0.80)', outline: 'none' }}
                         ></input>
 
-                    
+
                         {/* <h6 style={{ marginLeft: "68%", marginTop: 5, fontSize: 11, color: "blue" }}>Forgotten Password ?</h6> */}
                         <ul >
-                            <li><Link style={{ marginLeft: "62%", marginTop: 5, fontSize: 13, color: "blue", }} to="/forgetPass">Forgotten Password ?</Link></li>
+                            <li><Link style={{ marginLeft: "62%", marginTop: 5, fontSize: 13, color: "blue", }} to="/forgetpass">Forgotten Password ?</Link></li>
                         </ul>
 
                         <div data-svg-wrapper data-layer="Frame" className="Frame" style={{ left: 18, top: 14, position: 'absolute' }}>
@@ -113,7 +106,7 @@ const Login = () => {
                     </div>
                     <div data-layer="Group 3" className="Group3" style={{ width: 124, height: 52, left: 120, top: 271, position: 'absolute' }}>
                         <button
-                            type="submit"
+                            type="button"
                             style={{ color: "white", width: 124, height: 56, left: 0, top: 0, position: 'absolute', background: 'linear-gradient(100deg, #9181F4 0%, #5038ED 100%)', boxShadow: '0px 8px 21px rgba(0, 0, 0, 0.16)', borderRadius: 16, border: '1px #F0EDFF solid' }}
                             onClick={data}
                         >

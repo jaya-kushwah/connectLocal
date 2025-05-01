@@ -1,0 +1,5 @@
+.mainLayout-content{
+    width:calc(100% - 275px);
+    /* position:fixed */
+}
+

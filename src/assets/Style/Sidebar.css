@@ -1,27 +1,15 @@
 .sidebar {
-    width: 290px;
-    height:auto;
+    /* width: 250px; */
+    width: 275px;
+    height:100vh;
     color: #333;
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease-in-out;
-    left: 0;
-    top: 0;
-    z-index: 1000;
-    margin-top:76px;
-    position:fixed;
-    margin-left:-2%;
+    margin-top:14vh; 
   }
-  
-  .sidebar.dark {
-    background:white
-    color: #eee;
-    height:102%;
-  }
-  
-  .sidebar.collapsed {
-    width: 50px;
-  }
+
+
   
   .toggle-btn {
     background: none;
@@ -32,6 +20,19 @@
     color:white;
   }
 
+.menu{
+  position:fixed;
+  background:white;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  height:100vh;
+  flex-direction: column;
+  width: 275px;
+  color: #333;
+  display: flex;
+  transition: all 0.3s ease-in-out;
+  top:78px;
+}
+
   .menu-item {
     display: flex;
     align-items: center;
@@ -41,11 +42,13 @@
     color: black;
     gap: 7%;
     text-decoration:none;
-    /* margin-left:-19% */
+    margin-left:-15%
   }
   
   .menu-item:hover {
-    background: rgba(0, 0, 0, 0.1);
+    /* background: rgba(0, 0, 0, 0.1); */
+    background: #9d9dab;
+    background: linear-gradient(90deg, rgba(157, 157, 171, 1) 35%, rgba(227, 232, 232, 1) 100%);
   }
   
   .menu-item.active {
@@ -73,3 +76,4 @@
   }
   
 
+.
