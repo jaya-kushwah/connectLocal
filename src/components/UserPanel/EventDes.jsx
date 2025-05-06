@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../assets/Style/EventDes.css"; // Import CSS file
 import Container from "../Container";
@@ -115,6 +116,7 @@ const EventDes = () => {
               <h2 className="h4 fw-semibold mb-3">Event Description</h2>
               <p className="text-muted">{event.description}
               </p>
+              <Link to={"/dashboard"}><button className="btn btn-warning me-2">Back Button</button></Link>
             </div>
           </div>
         </div>

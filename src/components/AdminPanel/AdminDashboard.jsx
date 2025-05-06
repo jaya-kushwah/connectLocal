@@ -1,117 +1,75 @@
-import React, { useState, useEffect } from 'react';
-import "../../assets/Style/AdminDashboard.css"
+import React, { useEffect, useState } from "react";
+import {
+  PieChart, Pie, Cell, Tooltip, Legend,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer
+} from "recharts";
+import { Box, Typography, Paper } from "@mui/material";
 
-const AdmainDashboard = () => {
-  const [isVisible, setIsVisible] = useState(false);
+const COLORS = ["#00C49F", "#FF8042"];
+
+const AdminDashboard = () => {
+  const [userStats, setUserStats] = useState([
+    { name: "Active", value: 0 },
+    { name: "Blocked", value: 0 },
+  ]);
+  const [monthlyEvents, setMonthlyEvents] = useState([]);
 
   useEffect(() => {
-    setIsVisible(true);
+    fetch("http://localhost:8080/adminCrud/users/stats") // Adjust endpoint as needed
+      .then((res) => res.json())
+      .then((data) => {
+        setUserStats([
+          { name: "Active", value: data.activeUsers },
+          { name: "Blocked", value: data.blockedUsers },
+        ]);
+        setMonthlyEvents(data.eventsPerMonth);
+      })
+      .catch((err) => console.error("Error loading dashboard stats", err));
   }, []);
 
-  // Sample data for the boxes
-  const boxData = [
-    {
-      title: "Users",
-      count: 2458,
-      growth: "+14.5%",
-      isPositive: true,
-      icon: "👥",
-      isBlack: true
-    },
-    {
-      title: "Revenue",
-      count: "₹128,250",
-      growth: "+8.2%",
-      isPositive: true,
-      icon: "💰",
-      isBlack: false
-    },
-    {
-      title: "Tasks",
-      count: 64,
-      growth: "-2.4%",
-      isPositive: false,
-      icon: "📋",
-      isBlack: true
-    },
-    {
-      title: "Projects",
-      count: 36,
-      growth: "+5.1%",
-      isPositive: true,
-      icon: "📊",
-      isBlack: false
-    }
-  ];
-
   return (
-    <div  className=" min-h-screen">
-
-      {/* Main Content Area */}
-      <div className="flex-1 p-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6 ">Dashboard Overview</h1>
-
-        {/* Animated Boxes Container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {boxData.map((box, index) => (
-            <div
-              key={index}
-              className={`rounded-lg shadow-md p-6 transform transition-all duration-500 overflow-hidden relative ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+    <Box sx={{ marginTop:"7%" ,display: "flex", gap: 4, flexWrap: "wrap", p: 3 }}>
+      <Paper sx={{ flex: 1, p: 2 }}>
+        <Typography variant="h6" gutterBottom>
+          User Status Overview
+        </Typography>
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie
+              data={userStats}
+              cx="50%"
+              cy="50%"
+              outerRadius={80}
+              label
+              dataKey="value"
             >
-              {/* Animated Background - Black boxes vs Styled boxes */}
-              <div className="absolute inset-0">
-                {box.isBlack ? (
-                  <>
-                    <div className="absolute inset-0 bg-black"></div>
-                    <div className="absolute inset-0 opacity-10"
-                      style={{
-                        backgroundImage: 'linear-gradient(135deg, #333 25%, transparent 25%), linear-gradient(225deg, #333 25%, transparent 25%), linear-gradient(45deg, #333 25%, transparent 25%), linear-gradient(315deg, #333 25%, transparent 25%)',
-                        backgroundPosition: '10px 0, 10px 0, 0 0, 0 0',
-                        backgroundSize: '20px 20px',
-                        backgroundRepeat: 'repeat',
-                        animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-                      }}>
-                    </div>
-                    <div className="absolute bottom-0 left-0 w-full h-1 bg-blue-500"></div>
-                    <div className={`absolute h-full w-2 left-0 top-0 ${index === 0 ? 'bg-blue-500' : 'bg-green-500'}`}></div>
-                  </>
-                ) : (
-                  <>
-                    <div className={`absolute inset-0 ${index === 1 ? 'bg-gradient-to-br from-purple-500 to-pink-500' : 'bg-gradient-to-br from-blue-400 to-indigo-600'} opacity-10`}></div>
-                    <div className="absolute inset-0 bg-white opacity-90"></div>
-                    <div className={`absolute inset-0 bg-gradient-to-br from-transparent via-transparent ${index === 1 ? 'to-purple-100' : 'to-blue-100'}`}></div>
-                    <div className={`absolute bottom-0 left-0 w-full h-1 ${index === 1 ? 'bg-purple-500' : 'bg-blue-500'}`}></div>
-                  </>
-                )}
-              </div>
+              {userStats.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </ResponsiveContainer>
+      </Paper>
 
-              {/* Content */}
-              <div className="relative z-10 flex justify-between items-start">
-                <div>
-                  <p className={`text-sm ${box.isBlack ? 'text-gray-400' : 'text-gray-500'}`}>{box.title}</p>
-                  <h2 className={`text-2xl font-bold mt-1 ${box.isBlack ? 'text-white' : 'text-gray-800'}`}>{box.count}</h2>
-                  <p className={`text-sm ${box.isPositive ? 'text-green-500' : 'text-red-500'} mt-2`}>
-                    {box.growth} {box.isPositive ? '↑' : '↓'}
-                  </p>
-                </div>
-                <div className={`text-2xl h-12 w-12 rounded-full flex items-center justify-center ${box.isBlack
-                    ? 'bg-gray-800 text-gray-300'
-                    : index === 1
-                      ? 'bg-purple-100 text-purple-600'
-                      : 'bg-blue-100 text-blue-600'
-                  }`}>
-                  {box.icon}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* </div> */}
-      </div>
-    </div>
+      <Paper sx={{ flex: 1, p: 2 }}>
+        <Typography variant="h6" gutterBottom>
+          Monthly Events
+        </Typography>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={monthlyEvents}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="events" fill="#8884d8" />
+          </BarChart>
+        </ResponsiveContainer>
+      </Paper>
+    </Box>
   );
 };
 
-export default AdmainDashboard;
+export default AdminDashboard;

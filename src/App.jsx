@@ -24,6 +24,12 @@ import EventForm from "./components/AdminPanel/EventForm";
 import Container from "./components/Container";
 import Footer from "./components/UserPanel/Footer";
 import ForgotPassword from "./components/UserPanel/ForgetPassword";
+import OtpVerify from "./components/UserPanel/OtpVerify";
+import ResetPassword from "./components/UserPanel/ResetPassword";
+import AddCardEvent from "./components/UserPanel/AddCardEvent";
+import ViewCard from "./components/UserPanel/ViewCard";
+import UserCreateEvents from "./components/AdminPanel/UserCreateEvents";
+import ViewGroup from "./components/UserPanel/ViewGroup";
 
 
 const ProtectedRoute = ({ children, role }) => {
@@ -38,6 +44,7 @@ const ProtectedRoute = ({ children, role }) => {
   if (!user.auth) {
     return <Navigate to="/login" replace />;
   }
+
 
   return children;
 };
@@ -60,9 +67,9 @@ function AdminLayout({ children }) {
 
 const UserLayout = ({ children }) => {
   return (
-      <div className="flex-grow-1">
-        <Container>{children}</Container>
-      </div>
+    <div className="flex-grow-1">
+      <Container>{children}</Container>
+    </div>
   );
 };
 
@@ -74,7 +81,9 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/forgetpass" element={<ForgotPassword></ForgotPassword>} /> */}
+        <Route path="/forgetpass" element={<ForgotPassword></ForgotPassword>} />
+        <Route path="/verifyOtp" element={<OtpVerify></OtpVerify>} />
+        <Route path="/resetPassword" element={<ResetPassword></ResetPassword>} />
 
         {/* Protected USer Dashboard */}
         <Route
@@ -106,7 +115,7 @@ function App() {
           element={
             <ProtectedRoute role="user">
               <UserLayout>
-                <ProfilePage  />
+                <ProfilePage />
               </UserLayout>
             </ProtectedRoute>
           }
@@ -124,7 +133,7 @@ function App() {
         />
 
         <Route
-          path="/interest-groups"
+          path="/interest-groups/add"
           element={
             <ProtectedRoute role="user">
               <UserLayout>
@@ -135,7 +144,18 @@ function App() {
         />
 
         <Route
-          path="/events"
+          path="/interest-groups/view"
+          element={
+            <ProtectedRoute role="user">
+              <UserLayout>
+                <ViewGroup></ViewGroup>
+              </UserLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/events/:id"
           element={
             <ProtectedRoute role="user">
               <UserLayout>
@@ -151,6 +171,28 @@ function App() {
             <ProtectedRoute role="user">
               <UserLayout>
                 <Announcement />
+              </UserLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/card/add"
+          element={
+            <ProtectedRoute role="user">
+              <UserLayout>
+                <AddCardEvent></AddCardEvent>
+              </UserLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/card/view"
+          element={
+            <ProtectedRoute role="user">
+              <UserLayout>
+                <ViewCard></ViewCard>
               </UserLayout>
             </ProtectedRoute>
           }
@@ -201,6 +243,17 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/admin/view-events"
+          element={
+            <ProtectedRoute role="admin">
+              <AdminLayout>
+                <UserCreateEvents></UserCreateEvents>
+              </AdminLayout>
+            </ProtectedRoute>
+          }
+        />
+
       </Routes>
     </BrowserRouter>
   );

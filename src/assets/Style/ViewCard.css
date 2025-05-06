@@ -1,0 +1,93 @@
+.view-events-container {
+    padding: 25px;
+  }
+  
+  .events-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .events-table th,
+  .events-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .events-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .event-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  
+  .actions-cell {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .action-icon {
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+  
+  .action-icon:hover {
+    transform: scale(1.2);
+  }
+  
+  .view {
+    color: #007bff;
+  }
+  
+  .edit {
+    color: #ffc107;
+  }
+  
+  .delete {
+    color: #dc3545;
+  }
+  
+  .event-img {
+    width: 80px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .actions-cell .action-icon {
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .actions-cell .action-icon:hover {
+    color: #007bff;
+  }
+  
+  .pagination-controls {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .pagination-controls button {
+    padding: 6px 12px;
+    margin: 0 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination-controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

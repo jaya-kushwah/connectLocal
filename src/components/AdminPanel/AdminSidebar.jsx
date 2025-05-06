@@ -22,14 +22,19 @@ const AdminSidebar = () => {
                             <FaUserFriends className="menu-icon" /> User Management
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/content-moderation" className="menu-item">
                             <FaLayerGroup className="menu-icon" /> Content Moderation
                         </Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link to="/event-form" className="menu-item">
                             <FaBell className="menu-icon" />  Event Management
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/admin/view-events" className="menu-item">
+                            <FaBell className="menu-icon" />  UserEvents View
                         </Link>
                     </li>
                     {/* <li>

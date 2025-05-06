@@ -109,12 +109,25 @@ const Signup = () => {
     };
 
     const handleInterestChange = (e) => {
-        setFormData((prev) => ({ ...prev, interests: e.value }));
+        const selected = e.value;
+
+        if (selected.length > 5) {
+            // Block selection beyond 5
+            alert("You can select up to 5 interests only.");
+            return;
+        }
+
+        setFormData((prev) => ({
+            ...prev,
+            interests: selected
+        }));
+
         setValidation((prev) => ({
             ...prev,
-            interestsValid: e.value.length > 0 && e.value.length <= 5,
+            interestsValid: selected.length > 0
         }));
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -170,14 +183,14 @@ const Signup = () => {
     return (
         <div style={{ marginTop: "0%" }} className="position-fixed overflow-scroll top-0 start-0 w-100 h-100 px-3 px-md-5 py-5 bg-primary d-flex justify-content-center align-items-center  ">
             <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-            
+
             <div style={{ marginTop: "1%" }} className="w-100 max-w-1354 bg-white shadow rounded overflow-hidden d-flex flex-column flex-md-row">
                 {/* Left Section (Images and Text) */}
-                <div style={{marginTop:"-4%"}}  className="w-100 w-md-50 bg-gradient-primary p-4 p-md-5 position-relative">
+                <div style={{ marginTop: "-4%" }} className="w-100 w-md-50 bg-gradient-primary p-4 p-md-5 position-relative">
                     <div className="text-white fs-5 fw-semibold text-center mb-4 ">
                         Social media shared today, tomorrow or by location
                     </div>
-                    <div style={{marginTop:"-2%"}}  className="position-relative w-100 h-400">
+                    <div style={{ marginTop: "-2%" }} className="position-relative w-100 h-400">
                         <img
                             className="position-absolute w-180 h-342 left-0 top-50"
                             src={phoneImage}
@@ -197,13 +210,13 @@ const Signup = () => {
                 </div>
 
                 {/* Right Section (Form) */}
-                <div style={{marginTop:"-5%"}}  className="w-100 w-md-50 p-4 p-md-5">
+                <div style={{ marginTop: "-5%" }} className="w-100 w-md-50 p-4 p-md-5">
                     <div className="d-flex align-items-center mb-4 mb-md-5">
                         <img className="w-45 h-45 me-2" src={Logo} alt="Logo" />
                         <div className="text-dark fs-5 fw-bold">ConnectLocal</div>
                     </div>
 
-                    <div style={{marginTop:"-9%"}}  className="mb-4 mb-md-5">
+                    <div style={{ marginTop: "-9%" }} className="mb-4 mb-md-5">
                         <h2 className="text-dark fs-5 fw-semibold mb-2">Create account</h2>
                         <p className="text-secondary">Interest-Based Community Platform</p>
                     </div>
@@ -334,14 +347,13 @@ const Signup = () => {
                             <div className="col-md-6">
                                 <label className="form-label">Interests (Select up to 5)</label>
                                 <MultiSelect
-                                    value={formData.interests}
+                                    value={formData.interests} // array of selected objects
                                     onChange={handleInterestChange}
-                                    options={availableInterests}
+                                    options={availableInterests} // array of options
                                     optionLabel="name"
                                     placeholder="Select Interests"
                                     maxSelectedLabels={3}
-                                    className={`w-100 ${!validation.interestsValid ? "is-invalid" : ""
-                                        }`}
+                                    className={`w-100 ${!validation.interestsValid ? "is-invalid" : ""}`}
                                     panelClassName="bg-white border border-secondary rounded shadow-sm"
                                     itemClassName="hover-bg-light p-2"
                                     display="chip"
@@ -352,6 +364,7 @@ const Signup = () => {
                                     </div>
                                 )}
                             </div>
+
                         </div>
 
                         <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
@@ -386,7 +399,7 @@ const Signup = () => {
                                     </a>
                                 </label>
                             </div>
-                            <div className="form-check">
+                            {/* <div className="form-check">
                                 <input
                                     type="checkbox"
                                     className="form-check-input"
@@ -395,7 +408,7 @@ const Signup = () => {
                                 <label className="form-check-label" htmlFor="rememberCheck">
                                     Remember me
                                 </label>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="d-flex flex-column flex-md-row gap-3 mb-3">
@@ -427,7 +440,7 @@ const Signup = () => {
                         </div>
                     </form>
 
-                    <div style={{marginTop:"3%"}} className="text-center mt-3">
+                    <div style={{ marginTop: "3%" }} className="text-center mt-3">
                         Already have an account?{" "}
                         <button
                             onClick={() => navigate("/login")}
@@ -539,9 +552,9 @@ const OtpVerificationForm = ({ email, onBack, onSuccess }) => {
     }, [state.countdown]);
 
     return (
-        <div style={{marginTop:"0%"}} className="position-fixed top-0 start-0 w-100 h-100 px-3 px-md-5 py-5 bg-primary d-flex justify-content-center align-items-center overflow-hidden">
+        <div style={{ marginTop: "0%" }} className="position-fixed top-0 start-0 w-100 h-100 px-3 px-md-5 py-5 bg-primary d-flex justify-content-center align-items-center overflow-hidden">
             <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-            
+
             <div className="w-100 max-w-1354 bg-white shadow rounded overflow-hidden d-flex flex-column flex-md-row">
                 {/* Left Section (Images and Text) - Same as signup */}
                 <div className="w-100 w-md-50 bg-gradient-primary p-4 p-md-5 position-relative">

@@ -1,0 +1,114 @@
+.verify-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.verify-left {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f8ff;
+}
+
+.verify-content {
+    max-width: 400px;
+    width: 100%;
+}
+
+.verify-content h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #1a237e;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.verify-message {
+    color: red;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.verify-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.verify-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #5a67d8, #667eea);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.verify-btn:hover {
+    opacity: 0.95;
+}
+
+.verify-right {
+    flex: 1;
+    background-color: #1a
+}
+
+.otp-box-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .otp-box {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 50%; /* makes it a circle */
+    border: 2px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .otp-box:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .verify-btn {
+    margin-top: 25px;
+    padding: 10px 30px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .verify-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .verify-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
+
+  

@@ -6,105 +6,322 @@ import { Cookies } from "react-cookie";
 import "../../assets/Style/InterestGroup.css";
 import Container from "../Container";
 
+// const InterestGroup = () => {
+//     const cookies = new Cookies();
+//     const navigate = useNavigate();
+//     const [isSubmitting, setIsSubmitting] = useState(false);
+//     const [error, setError] = useState("");
+//     const [success, setSuccess] = useState("");
+//     const [members, setMembers] = useState([]);
+//     const [memberInput, setMemberInput] = useState("");
+//     const [activeTab, setActiveTab] = useState("details");
+
+//     const {
+//         register,
+//         handleSubmit,
+//         formState: { errors },
+//         reset,
+//     } = useForm();
+
+//     const addMember = (e) => {
+//         e.preventDefault();
+//         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//         if (memberInput.trim() && !members.includes(memberInput.trim())) {
+//             if (emailRegex.test(memberInput.trim())) {
+//                 setMembers([...members, memberInput.trim()]);
+//                 setMemberInput("");
+//                 setError("");
+//             } else {
+//                 setError("Please enter a valid email address");
+//             }
+//         }
+//     };
+
+//     const removeMember = (email) => {
+//         setMembers(members.filter((m) => m !== email));
+//     };
+
+
+//     const onSubmit = async (data) => {
+//         const userData = cookies.get('user');
+    
+//         if (!userData || !userData.token || !userData._id) {
+//             setError("You must be logged in to create a group");
+//             setTimeout(() => navigate("/login"), 1500);
+//             return;
+//         }
+    
+//         if (members.length === 0) {
+//             setError("Please add at least one group member");
+//             return;
+//         }
+    
+//         setIsSubmitting(true);
+//         setError("");
+//         setSuccess("");
+    
+//         try {
+//             // ✅ Step 1: Validate members first
+//             const validationRes = await axios.post(
+//                 "http://localhost:8080/group/validate-emails",
+//                 { emails: members },
+//                 {
+//                     headers: {
+//                         Authorization: `Bearer ${userData.token}`,
+//                         "Content-Type": "application/json",
+//                     },
+//                 }
+//             );
+    
+//             const { existingUsers, nonExistingEmails } = validationRes.data;
+    
+//             if (nonExistingEmails.length > 0) {
+//                 setError(
+//                     `These members are not registered: ${nonExistingEmails.join(", ")}`
+//                 );
+//                 setIsSubmitting(false);
+//                 return;
+//             }
+    
+//             // ✅ Step 2: Proceed with group creation using existing users only
+//             const groupData = {
+//                 userId: userData._id,
+//                 name: data.name,
+//                 description: data.description,
+//                 groupMember: existingUsers.map((user) => ({
+//                     email: user.email,
+//                     userId: user._id,
+//                     name: user.name,
+//                     role: "member",
+//                 })),
+//             };
+    
+//             const response = await axios.post(
+//                 "http://localhost:8080/group/",
+//                 groupData,
+//                 {
+//                     headers: {
+//                         Authorization: `Bearer ${userData.token}`,
+//                         "Content-Type": "application/json",
+//                     },
+//                 }
+//             );
+    
+//             setSuccess("Group created successfully! Redirecting...");
+//             reset();
+//             setMembers([]);
+//             setTimeout(() => navigate(`/groups/${response.data.data._id}`), 1500);
+//         } catch (err) {
+//             console.error("API Error:", err);
+//             let errorMessage = "Failed to create group";
+    
+//             if (err.response) {
+//                 if (err.response.status === 401) {
+//                     errorMessage = "Session expired. Please login again.";
+//                     ["user", "token", "auth", "_id", "email"].forEach((name) =>
+//                         cookies.remove(name, { path: "/" })
+//                     );
+//                     setTimeout(() => navigate("/login"), 2000);
+//                 } else if (err.response.data?.message) {
+//                     errorMessage = err.response.data.message;
+//                 }
+//             }
+//             setError(errorMessage);
+//         } finally {
+//             setIsSubmitting(false);
+//         }
+//     };
+    
 const InterestGroup = () => {
-    const cookies = new Cookies();
-    const navigate = useNavigate();
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
-    const [members, setMembers] = useState([]);
-    const [memberInput, setMemberInput] = useState("");
-    const [activeTab, setActiveTab] = useState("details");
+  const cookies = new Cookies();
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [members, setMembers] = useState([]);
+  const [memberInput, setMemberInput] = useState("");
+  const [activeTab, setActiveTab] = useState("details");
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset,
-    } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
-    const addMember = (e) => {
-        e.preventDefault();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (memberInput.trim() && !members.includes(memberInput.trim())) {
-            if (emailRegex.test(memberInput.trim())) {
-                setMembers([...members, memberInput.trim()]);
-                setMemberInput("");
-                setError("");
-            } else {
-                setError("Please enter a valid email address");
-            }
-        }
-    };
-
-    const removeMember = (email) => {
-        setMembers(members.filter((m) => m !== email));
-    };
-
-    const onSubmit = async (data) => {
-        const userData = cookies.get('user');
-
-        if (!userData || !userData.token || !userData._id) {
-            setError("You must be logged in to create a group");
-            setTimeout(() => navigate("/login"), 1500);
-            return;
-        }
-
-        if (members.length === 0) {
-            setError("Please add at least one group member");
-            return;
-        }
-
-        setIsSubmitting(true);
+  const addMember = (e) => {
+    e.preventDefault();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (memberInput.trim() && !members.includes(memberInput.trim())) {
+      if (emailRegex.test(memberInput.trim())) {
+        setMembers([...members, memberInput.trim()]);
+        setMemberInput("");
         setError("");
-        setSuccess("");
+      } else {
+        setError("Please enter a valid email address");
+      }
+    }
+  };
 
-        try {
-            const groupData = {
-                userId: userData._id,
-                name: data.name,
-                description: data.description,
-                groupMember: members.map((email) => ({ email, role: "member" })),
-            };
+  const removeMember = (email) => {
+    setMembers(members.filter((m) => m !== email));
+  };
 
-            const response = await axios.post(
-                "http://localhost:8080/group/",
-                groupData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${userData.token}`,
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-
-            setSuccess("Group created successfully! Redirecting...");
-            reset();
-            setMembers([]);
-            setTimeout(() => navigate(`/groups/${response.data.data._id}`), 1500);
-        } catch (err) {
-            console.error("API Error:", err);
-            let errorMessage = "Failed to create group";
-
-            if (err.response) {
-                if (err.response.status === 401) {
-                    errorMessage = "Session expired. Please login again.";
-                    ["user", "token", "auth", "_id", "email"].forEach((name) => {
-                        cookies.remove(name, { path: "/" });
-                    });
-                    setTimeout(() => navigate("/login"), 2000);
-                } else if (err.response.data?.message) {
-                    errorMessage = err.response.data.message;
-                }
-            }
-            setError(errorMessage);
-        } finally {
-            setIsSubmitting(false);
+  const onSubmit = async (data) => {
+    const userData = cookies.get('user');
+    
+    // Check for user session
+    if (!userData || !userData.token || !userData._id) {
+      setError("You must be logged in to create a group");
+      setTimeout(() => navigate("/login"), 1500);
+      return;
+    }
+    
+    // Check if members are added
+    if (members.length === 0) {
+      setError("Please add at least one group member");
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setError("");
+    setSuccess("");
+    
+    try {
+      // Step 1: Validate member emails
+      const validationRes = await axios.post(
+        "http://localhost:8080/group/validate-emails",
+        { emails: members },
+        {
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+            "Content-Type": "application/json",
+          },
         }
-    };
+      );
+
+      const { existingUsers, nonExistingEmails } = validationRes.data;
+      
+      if (nonExistingEmails.length > 0) {
+        setError(`These members are not registered: ${nonExistingEmails.join(", ")}`);
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Step 2: Proceed with group creation using existing users only
+      const groupData = {
+        userId: userData._id,
+        name: data.name,
+        description: data.description,
+        groupMember: existingUsers.map((user) => ({
+          email: user.email,
+          userId: user._id,
+          name: user.name,
+          role: "member",
+        })),
+      };
+
+      const response = await axios.post(
+        "http://localhost:8080/group/",
+        groupData,
+        {
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      setSuccess("Group created successfully! Redirecting...");
+      reset();
+      setMembers([]);
+    //   setTimeout(() => navigate(`/groups/${response.data.data._id}`), 1500);
+    } catch (err) {
+      console.error("API Error:", err);
+      let errorMessage = "Failed to create group";
+      
+      if (err.response) {
+        if (err.response.status === 401) {
+          errorMessage = "Session expired. Please login again.";
+          // Clear cookies and session data
+          ["user", "token", "auth", "_id", "email"].forEach((name) =>
+            cookies.remove(name, { path: "/" })
+          );
+          setTimeout(() => navigate("/login"), 2000);
+        } else if (err.response.data?.message) {
+          errorMessage = err.response.data.message;
+        }
+      }
+      setError(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+
+    // const onSubmit = async (data) => {
+    //     const userData = cookies.get('user');
+
+    //     if (!userData || !userData.token || !userData._id) {
+    //         setError("You must be logged in to create a group");
+    //         setTimeout(() => navigate("/login"), 1500);
+    //         return;
+    //     }
+
+    //     if (members.length === 0) {
+    //         setError("Please add at least one group member");
+    //         return;
+    //     }
+
+    //     setIsSubmitting(true);
+    //     setError("");
+    //     setSuccess("");
+
+    //     try {
+    //         const groupData = {
+    //             userId: userData._id,
+    //             name: data.name,
+    //             description: data.description,
+    //             groupMember: members.map((email) => ({ email, role: "member" })),
+    //         };
+
+    //         const response = await axios.post(
+    //             "http://localhost:8080/group/",
+    //             groupData,
+    //             {
+    //                 headers: {
+    //                     Authorization: `Bearer ${userData.token}`,
+    //                     "Content-Type": "application/json",
+    //                 },
+    //             }
+    //         );
+
+    //         setSuccess("Group created successfully! Redirecting...");
+    //         reset();
+    //         setMembers([]);
+    //         setTimeout(() => navigate(`/groups/${response.data.data._id}`), 1500);
+    //     } catch (err) {
+    //         console.error("API Error:", err);
+    //         let errorMessage = "Failed to create group";
+
+    //         if (err.response) {
+    //             if (err.response.status === 401) {
+    //                 errorMessage = "Session expired. Please login again.";
+    //                 ["user", "token", "auth", "_id", "email"].forEach((name) => {
+    //                     cookies.remove(name, { path: "/" });
+    //                 });
+    //                 setTimeout(() => navigate("/login"), 2000);
+    //             } else if (err.response.data?.message) {
+    //                 errorMessage = err.response.data.message;
+    //             }
+    //         }
+    //         setError(errorMessage);
+    //     } finally {
+    //         setIsSubmitting(false);
+    //     }
+    // };
 
     return (
-        // <Container>
             <div className="group-creation-container">
                 <div className="group-creation-card">
                     <div className="group-header">

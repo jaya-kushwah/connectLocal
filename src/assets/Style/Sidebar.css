@@ -9,8 +9,6 @@
     margin-top:14vh; 
   }
 
-
-  
   .toggle-btn {
     background: none;
     border: none;
@@ -75,5 +73,26 @@
     background: rgba(95, 24, 218, 0.1);
   }
   
-
-.
+  .submenu {
+    list-style: none;
+    padding-left: 30px;
+    margin-top: 5px;
+  }
+  
+  .submenu-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    color: black;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .submenu-item:hover {
+    transition: background 0.3s ease;
+  }
+  
+  .submenu-icon {
+    margin-right: 8px;
+  }
+  

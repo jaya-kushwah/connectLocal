@@ -63,6 +63,7 @@ const Profile = () => {
   ]);
   const [imageFile, setImageFile] = useState(null);
 
+  
   // Fetch user data from API
   useEffect(() => {
     const fetchUserData = async () => {
@@ -420,9 +421,9 @@ const Profile = () => {
                         Information shown to other users
                       </p>
                     </div>
-                    <div className="bg-primary bg-opacity-10 p-3 rounded-circle">
+                    {/* <div className="bg-primary bg-opacity-10 p-3 rounded-circle">
                       <FiUser className="text-primary" />
-                    </div>
+                    </div> */}
                   </div>
 
                   {/* Interests Section */}
